@@ -46,3 +46,35 @@ int main(void)
 	}
 	return 0;
 }
+
+
+//다른 사람 풀이 http://ppikanyang.tistory.com/entry/1491-%EC%9B%90%EC%9E%AC%EC%9D%98-%EB%B2%BD-%EA%BE%B8%EB%AF%B8%EA%B8%B0
+//또 다른 사람 풀이 http://shalgorithmstd.tistory.com/68
+/*
+#include <cstdio>
+using namespace std;
+
+int main()
+{
+    int T;
+    scanf("%d", &T);
+    for (int tc = 1; tc <= T; tc++)
+    {
+        long long N, A, B;
+        long long min, cal;
+        scanf("%d %d %d", &N, &A, &B);
+        min = N*(A+B);
+        
+        for (int R = 1;  R<= N; R++)
+        {
+                for (int C = 1; C*R<=N; C++)
+                {
+                    if (R>=C) cal = A*(R - C) + B*(N - R*C);
+                    if (min>cal) min = cal;
+                }
+        }
+        printf("#%d %d\n", tc, min);
+        //cout << "#" << tc << " " << min << endl;
+    }
+}
+*/
