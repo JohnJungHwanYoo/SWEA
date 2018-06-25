@@ -34,7 +34,7 @@ int main(void)
 					break;
 				}
 				if (height[k+l]>=cur_max)cur_max = height[k+l];
-				p//rintf("cur_max: %d\n", cur_max);
+				//printf("cur_max: %d\n", cur_max);
 			}
 			if(state)cnt = cnt + (height[k]- cur_max);
 			//printf("k: %d, cnt: %d\n", k, cnt);
