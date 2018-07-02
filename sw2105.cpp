@@ -150,3 +150,133 @@ int main(void)
     }
     return 0;
 }
+
+//다른 사람 풀이 4ms에 풂
+/*
+#include <iostream>
+using namespace std;
+ 
+int d[23][23];
+bool check[101];
+int N;
+int cnt, SEcnt, SWcnt;
+int result;
+ 
+void go(int i, int j);
+void SEgo(int i, int j);
+void SWgo(int i, int j);
+void NEgo(int i, int j, int cnt);
+void NWgo(int i, int j, int cnt);
+ 
+int main() {
+    check[0] = true;
+    int T;
+    scanf("%d", &T);
+    for (int t = 1; t <= T; t++) {
+        scanf("%d", &N);
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= N; j++) {
+                scanf("%d", &d[i][j]);
+            }
+        }
+        result = -1;
+        for (int i = 1; i <= N - 2; i++) {
+            for (int j = 2; j <= N - 1; j++) {
+                // for (int k = 1; k <= 100; k++) check[k] = false;
+                cnt = 0;
+                SEcnt = 0;
+                SWcnt = 0;
+                check[d[i][j]] = true;
+                go(i, j);
+                check[d[i][j]] = false;
+            }
+        }
+        printf("#%d %d\n", t, result);
+    }
+    return 0;
+}
+ 
+void go(int i, int j) {
+    if (!check[d[i + 1][j + 1]]) {
+        check[d[i + 1][j + 1]] = true;
+        cnt++;
+        SEcnt++;
+        SEgo(i + 1, j + 1);
+        check[d[i + 1][j + 1]] = false;
+        cnt--;
+        SEcnt--;
+    }
+}
+ 
+void SEgo(int i, int j) {
+    if (i == N || j == N + 1) return;
+    if (!check[d[i + 1][j - 1]]) {
+        check[d[i + 1][j - 1]] = true;
+        cnt++;
+        SWcnt++;
+        SWgo(i + 1, j - 1);
+        check[d[i + 1][j - 1]] = false;
+        cnt--;
+        SWcnt--;
+    }
+    if (!check[d[i + 1][j + 1]] && j != N) {
+        check[d[i + 1][j + 1]] = true;
+        cnt++;
+        SEcnt++;
+        SEgo(i + 1, j + 1);
+        check[d[i + 1][j + 1]] = false;
+        cnt--;
+        SEcnt--;
+    }
+}
+ 
+void SWgo(int i, int j) {
+    if (i == N + 1 || j == 1) return;
+    if (cnt * 2 > result) {
+        if (!check[d[i - 1][j - 1]]) {
+            check[d[i - 1][j - 1]] = true;
+            NWgo(i - 1, j - 1, SEcnt-1);
+            check[d[i - 1][j - 1]] = false;
+        }
+    }
+    if (!check[d[i + 1][j - 1]]) {
+        check[d[i + 1][j - 1]] = true;
+        cnt++;
+        SWcnt++;
+        SWgo(i + 1, j - 1);
+        check[d[i + 1][j - 1]] = false;
+        cnt--;
+        SWcnt--;
+    }
+}
+ 
+void NWgo(int i, int j, int secnt) {
+    if (secnt == 0) {
+        NEgo(i, j, SWcnt - 1);
+    }
+    else {
+        secnt--;
+        if (!check[d[i - 1][j - 1]]) {
+            check[d[i - 1][j - 1]] = true;
+            NWgo(i - 1, j - 1, secnt);
+            check[d[i - 1][j - 1]] = false;
+        }
+        else return;
+    }
+}
+ 
+void NEgo(int i, int j, int swcnt) {
+    if (swcnt == 0) {
+        result = cnt * 2;
+    }
+    else {
+        swcnt--;
+        if (!check[d[i - 1][j + 1]]) {
+            check[d[i - 1][j + 1]] = true;
+            NEgo(i - 1, j + 1, swcnt);
+            check[d[i - 1][j + 1]] = false;
+        }
+        else return;
+    }
+}
+*/
