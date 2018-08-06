@@ -137,3 +137,52 @@ int main(void)
 	return 0;
 }
 */
+/*<속도가 획기적으로 빨랐던 풀이>
+#include <iostream>
+using namespace std;
+ 
+long int n, ans;
+long int x[20];
+long int y[20];
+long int cntP, cntM;
+ 
+void ansF(long int start, long int sumX, long int sumY) {
+    if(cntP == n/2 && cntM == n/2)  {
+        long int temp;
+        temp = sumX * sumX + sumY * sumY;
+        if(ans > temp)   ans = temp;
+        return ;
+    }
+ 
+    if(cntP < n/2)   {
+        cntP++;
+        ansF(start + 1, sumX + x[start + 1], sumY + y[start + 1]);
+        cntP--;
+    }
+    if(cntM < n/2)   {
+        cntM++;
+        ansF(start + 1, sumX - x[start + 1], sumY - y[start + 1]);
+        cntM--;
+    }
+    return ;
+}
+ 
+ 
+int main()  {
+    long int tc;
+    cin >> tc;
+ 
+    for(long int i = 1; i <= tc; i++)    {
+        cin >> n;
+        for(long int j = 0; j < n; j++)  cin >> x[j] >> y[j];
+ 
+        cntP = 1;
+        cntM = 0;
+        ans = 99999999999;
+ 
+        ansF(0, x[0], y[0]);
+        cout << "#" << i << " " << ans << endl;
+    }
+    return 0;
+}
+*/
